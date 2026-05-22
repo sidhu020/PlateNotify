@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}PlateNotify - Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="text-center mb-5">
+            <div class="display-1 mb-4">
+                <i class="bi bi-car-front"></i>
+            </div>
+            <h1 class="display-4 fw-bold mb-3">Welcome to PlateNotify</h1>
+            <p class="lead text-muted mb-4">
+                Report vehicle issues anonymously and help keep our streets safe and respectful.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-4">
+                <a class="btn btn-primary btn-lg px-4" href="{{ url_for('report') }}" role="button">
+                    <i class="bi bi-exclamation-triangle"></i> Report an Issue
+                </a>
+                {% if not current_user.is_authenticated %}
+                    <a class="btn btn-outline-secondary btn-lg px-4" href="{{ url_for('register') }}" role="button">
+                        <i class="bi bi-person-plus"></i> Create Account
+                    </a>
+                {% else %}
+                    <a class="btn btn-outline-primary btn-lg px-4" href="{{ url_for('dashboard') }}" role="button">
+                        <i class="bi bi-speedometer2"></i> Go to Dashboard
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="fs-1 text-primary mb-3">
+                            <i class="bi bi-incognito"></i>
+                        </div>
+                        <h5 class="card-title">Anonymous</h5>
+                        <p class="card-text">Report issues without revealing your identity. Stay safe and respectful.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="fs-1 text-success mb-3">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h5 class="card-title">Secure</h5>
+                        <p class="card-text">Your data is encrypted and stored securely. Privacy is our priority.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="fs-1 text-warning mb-3">
+                            <i class="bi bi-bell"></i>
+                        </div>
+                        <h5 class="card-title">Notifications</h5>
+                        <p class="card-text">Receive instant notifications about issues with your vehicles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

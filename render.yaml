@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: platenotify
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_DEBUG
+        value: "0"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false # Set your Telegram Bot API token here
+      - key: DATABASE_URL
+        sync: false # Optional: Set a free PostgreSQL URL from Neon or Supabase to persist data

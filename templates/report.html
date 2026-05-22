@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Report Issue – PlateNotify{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-lg">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">
+                    <i class="bi bi-exclamation-triangle"></i> Report an Issue
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info" role="alert">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Your report is anonymous.</strong> The vehicle owner will be notified but won't know who you are.
+                </div>
+                <form method="POST" action="{{ url_for('report') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <div class="mb-3">
+                        <label for="plate_number" class="form-label">
+                            <i class="bi bi-tag"></i> License Plate
+                        </label>
+                        <input type="text" class="form-control" id="plate_number" name="plate_number" 
+                               placeholder="e.g., ABC1234" maxlength="10" required>
+                        <small class="form-text text-muted">Enter the exact license plate number.</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="issue_type" class="form-label">
+                            <i class="bi bi-exclamation-circle"></i> What's the Issue?
+                        </label>
+                        <select class="form-select" id="issue_type" name="issue_type" required>
+                            <option value="" selected disabled>Select an issue type...</option>
+                            {% for issue in issues %}
+                                <option value="{{ issue }}">{{ issue }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">
+                            <i class="bi bi-chat"></i> Additional Details (optional)
+                        </label>
+                        <textarea class="form-control" id="message" name="message" rows="4"
+                                  placeholder="Provide any additional context... (max 500 characters)" maxlength="500"></textarea>
+                        <small class="form-text text-muted">Be specific but respectful.</small>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-warning btn-lg">
+                            <i class="bi bi-send"></i> Submit Anonymous Report
+                        </button>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
