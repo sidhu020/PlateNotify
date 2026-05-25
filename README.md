@@ -1,5 +1,5 @@
 # PlateNotify 🚗
-### [Video Demo:]()
+### [Video Demo:](https://www.youtube.com/watch?v=wz-PM4jPzBo)
 ### [Deployed Link:](https://platenotify.pythonanywhere.com/)
 ### Description: PlateNotify is a privacy-focused anonymous vehicle notification platform that allows users to report issues like wrong parking, headlights left on, or open windows using a vehicle’s plate number.
 
